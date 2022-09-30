@@ -28,8 +28,7 @@ Vue.js - The Progressive JavaScript Framework
 √ Add Prettier for code formatting? ... Yes
 ```
 
-![프로젝트 초기 구조](/2022-05-17/%ED%99%94%EB%A9%B4%20%EC%BA%A1%EC%B2%98%202022-05-17%20011851.png)
-
+![프로젝트 초기 구조](/2022-05-17/%ED%99%94%EB%A9%B4%20%EC%BA%A1%EC%B2%98%202022-05-17%20011851.png){: style="max-height: 350px" .left}
 확장 스크립트를 제외하고 모든 선택지에 Yes 를 했을 경우의 프로젝트 구조다.
 
 가장 눈에 띄는 건 번들러로 `vite` 가 쓰였다는 점이다. 기존 프로젝트에서 쓰인 vue-cli 에 비해 미리보기 빌드 속도가 무려 10배 이상 빨라졌다. 이는 vite 가 어떤 모듈이 수정될 경우 수정된 모듈과 관련된 부분만을 교체하기 때문이다. 그래서 앱 사이즈가 커져도 갱신 시간에 영향을 끼치지 않는다. 이는 프로젝트 크기가 커질수록 빌드 시간이 느려지는 vue-cli 와 비교하면 큰 이점이다.
@@ -38,15 +37,15 @@ Vue.js - The Progressive JavaScript Framework
 
 그 밖에 Unit Test 를 할 수 있는 Vitest 와 End-to-End Test 를 할 수 있는 cypress 가 추가되었다.
 
+<br>
+
 ### 개발환경 세팅하기
 
 ide 는 당연하지만 vscode 를 사용했다. 타입스크립트를 사용함으로써 타입 추론과 문법 검증이 가능해지면서 ide 의 자동완성 기능이 고도화되어 개발 생산성을 상당히 높힐 수 있었다. 하지만 프로젝트 초기 세팅만으로는 거슬리는 부분이 일부 있었는데, 다음과 같이 해결했다.
 
-- ts 파일에서 vue 파일 import 시 red line 발생
+- ts 파일에서 vue 파일 import 시 red line 이 발생하는 현상
 
-  ![에러1](/2022-05-17/%ED%99%94%EB%A9%B4%20%EC%BA%A1%EC%B2%98%202022-05-17%20015228.png)
-
-  /src 경로에 아래 내용으로 shims-vue.d.ts 파일을 추가해주는 것으로 해결했다.
+  ![에러1](/2022-05-17/%ED%99%94%EB%A9%B4%20%EC%BA%A1%EC%B2%98%202022-05-17%20015228.png){: style="min-width: 100%"}
 
   ```typescript
   /* eslint-disable */
@@ -56,10 +55,13 @@ ide 는 당연하지만 vscode 를 사용했다. 타입스크립트를 사용함
     export default component;
   }
   ```
+  {: file='/src/shims-vue.d.ts'}
 
-- Delete `␍`eslint(prettier/prettier) 경고
+  위와 같이 shims-vue.d.ts 파일을 추가해주는 것으로 해결했다.
 
-  ![에러2](/2022-05-17/%ED%99%94%EB%A9%B4%20%EC%BA%A1%EC%B2%98%202022-05-17%20015753.png)
+- Delete `␍`eslint(prettier/prettier) 경고가 발생하는 현상
+
+  ![에러2](/2022-05-17/%ED%99%94%EB%A9%B4%20%EC%BA%A1%EC%B2%98%202022-05-17%20015753.png){: style="min-width: 100%"}
 
   해당 경고는 prettier 2 버전부터 endOfLine 의 기본값이 lf 로 변경돼서 윈도우 개발환경에서 발생한다. `.gitattributes` 나 별도 git config 수정이 없을 경우 윈도우 환경에서는 원격 저장소에서 받아올 때 개행문자를 crlf 로 바꿔서 가져온다.
 
@@ -77,8 +79,9 @@ ide 는 당연하지만 vscode 를 사용했다. 타입스크립트를 사용함
     }
   }
   ```
+  {: file='.eslintrc.cjs'}
 
-- vue 파일에서 import 시 모듈을 찾지 못 할 때
+- vue 파일에서 import 시 모듈을 찾지 못 하는 현상
 
   ```json
   {
@@ -90,8 +93,9 @@ ide 는 당연하지만 vscode 를 사용했다. 타입스크립트를 사용함
     }
   }
   ```
+  {: file='tsconfig.json'}
 
-  tsconfig.json 에 compilerOptions 설정을 추가해준다.
+  compilerOptions 설정을 추가해준다.
 
 ### 편리한 Vscode 확장 프로그램
 

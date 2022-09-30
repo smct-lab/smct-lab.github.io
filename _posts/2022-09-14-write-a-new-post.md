@@ -1,10 +1,11 @@
 ---
-title: Writing a New Post
+title: 게시글 작성 가이드
 author: kjb4494
 date: 2022-09-14 00:57:00 +0900
 categories: [기타, 블로그]
 tags: [blogging]
 render_with_liquid: false
+pin: true
 ---
 
 This post will guide you how to write a post on _Chirpy_ theme. Even if you have previous experience with Jekyll, this article is worth reading, because many features require specific variables to be set.
